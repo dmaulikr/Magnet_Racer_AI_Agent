@@ -62,90 +62,95 @@ public class magnetscript : manageforce
             done = true;
         }
 
+		/*
+		 * Permanent magnet 1
+		 */
         Vector3 direction1 = (transform.position - repel.transform.position).normalized;
         float traveldistance1 = Vector3.Distance(transform.position, repel.transform.position);
 
         float force1 = repelling / traveldistance1;
 
-
         Vector3 newforce1 = direction1 * force1 * charge1 * polecharge * Time.smoothDeltaTime;
-
 
         if (traveldistance1 <= 13)
             myrigidbody.AddForce(newforce1);
-
+		
+		/*
+		 * Permanent magnet 2
+		 */
         Vector3 direction2 = (transform.position - repel2.transform.position).normalized;
         float traveldistance2 = Vector3.Distance(transform.position, repel2.transform.position);
 
         float force2 = repelling / traveldistance2;
 
-
         Vector3 newforce2 = direction2 * force2 * charge1 * -polecharge * Time.smoothDeltaTime;
-
 
         if (traveldistance2 <= 13)
             myrigidbody.AddForce(newforce2);
 
-
+		/*
+		 * Permanent magnet 3
+		 */
         Vector3 direction3 = (transform.position - repel3.transform.position).normalized;
         float traveldistance3 = Vector3.Distance(transform.position, repel3.transform.position);
 
         float force3 = repelling / traveldistance3;
 
-
         Vector3 newforce3 = direction3 * force3 * charge1 * polecharge * Time.smoothDeltaTime;
-
 
         if (traveldistance3 <= 13)
             myrigidbody.AddForce(newforce3);
 
 
-
+		/*
+		 * Permanent magnet 4
+		 */
         Vector3 direction4 = (transform.position - repel4.transform.position).normalized;
         float traveldistance4 = Vector3.Distance(transform.position, repel4.transform.position);
 
         float force4 = repelling / traveldistance4;
 
-
         Vector3 newforce4 = direction4 * force4 * charge1 * -polecharge * Time.smoothDeltaTime;
-
 
         if (traveldistance4 <= 13)
             myrigidbody.AddForce(newforce4);
        
-        
+		/*
+		 * Racer1
+		 */
         Vector3 direction5 = (transform.position - repel5.transform.position).normalized;
         float traveldistance5 = Vector3.Distance(transform.position, repel5.transform.position);
 
         float force5 = repelling2 / traveldistance5;
 
-
         Vector3 newforce5 = direction5 * force5 * charge1 * charge2 * Time.smoothDeltaTime;
-
 
         if (traveldistance5 <= 4)
             myrigidbody.AddForce(newforce5);
 
+
+		/*
+		 * Racer2
+		 */
         Vector3 direction6 = (transform.position - repel6.transform.position).normalized;
         float traveldistance6 = Vector3.Distance(transform.position, repel6.transform.position);
 
         float force6 = repelling2 / traveldistance6;
 
-
         Vector3 newforce6 = direction6 * force6 * charge1 * charge3 * Time.smoothDeltaTime;
-
 
         if (traveldistance6 <= 4)
             myrigidbody.AddForce(newforce6);
 
+		/*
+		 * Racer3
+		 */
         Vector3 direction7 = (transform.position - repel7.transform.position).normalized;
         float traveldistance7 = Vector3.Distance(transform.position, repel7.transform.position);
 
         float force7 = repelling2 / traveldistance7;
 
-
         Vector3 newforce7 = direction7 * force7 * charge1 * charge4 * Time.smoothDeltaTime;
-
 
         if (traveldistance7 <= 4)
             myrigidbody.AddForce(newforce7);

@@ -4,41 +4,46 @@ using System.Collections;
 public class manageforce : MonoBehaviour
 {
     public AudioSource switch_sound = null;
-  
 
+	//Variables for the in game texts
     public TextMesh textmesh;
     public TextMesh textmesh2;
     public TextMesh textmesh3;
     public TextMesh textmesh4;
 
-
+	//Variables for the charges of each magnet racer
     public float charge1 = 1;
     public float charge2 = 1;
     public float charge3 = 1;
     public float charge4 = 1;
-    public float polecharge;
+    public float polecharge;	//Varaible for Push poles
 
-    int count;
+    //Variables for win check
     bool flag1;
     bool flag2;
     bool flag3;
     bool flag4;
+	int count;		//Variable for counting each players final position
 
+	//Variable for Red's final position check
     bool redwin;
     bool redsecond;
     bool redthird;
     bool redfourth;
 
+	//Variable for Purple's final position check
     bool purplewin;
     bool purplesecond;
     bool purplethird;
     bool purplefourth;
 
+	//Variable for Green's final position check
     bool greenwin;
     bool greensecond;
     bool greenthird;
     bool greenfourth;
 
+	//Variable for Blue's final position check
     bool bluewin;
     bool bluesecond;
     bool bluethird;
@@ -69,7 +74,7 @@ public class manageforce : MonoBehaviour
         }
 
 
-        
+        //flip pole for Red
         if (Input.GetKeyDown(KeyCode.Z))
         {
             switch_sound.Play();
@@ -79,6 +84,8 @@ public class manageforce : MonoBehaviour
                 charge1 = 1;
         }
 
+
+		//flip pole for Purple
         if (Input.GetKeyDown(KeyCode.C))
         {
             switch_sound.Play();
@@ -88,6 +95,8 @@ public class manageforce : MonoBehaviour
                 charge2 = 1;
         }
 
+
+		//flip pole for Green
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             switch_sound.Play();
@@ -97,6 +106,8 @@ public class manageforce : MonoBehaviour
                 charge3 = 1;
         }
 
+
+		//flip pole for Blue
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             switch_sound.Play();
@@ -106,7 +117,9 @@ public class manageforce : MonoBehaviour
                 charge4 = 1;
         }
 
-
+		/*
+		 * * Counting position of each racer in the end
+		 */
         if ((GameObject.Find("RED").GetComponent<magnetscript>().done == true && flag1 != true)|| (count==3 && flag1!=true))
         {
             Debug.Log("managinglaps" + count);
@@ -166,6 +179,9 @@ public class manageforce : MonoBehaviour
             flag4 = true;
         }
 
+		/*
+		 * Printing the results on screen
+		 */
         if (count == 4)
         {
             if (redwin == true)
