@@ -48,7 +48,6 @@ public class manageforce : MonoBehaviour
     bool bluesecond;
     bool bluethird;
     bool bluefourth;
-    
 
     void start()
     {
@@ -64,6 +63,7 @@ public class manageforce : MonoBehaviour
 
     void Update()
     {
+		// Testing factor not yet removed.
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
            
@@ -74,8 +74,10 @@ public class manageforce : MonoBehaviour
         }
 
 
-        //flip pole for Red
-        if (Input.GetKeyDown(KeyCode.Z))
+        // Flip pole for Red
+		// Red is a random move player
+		float randomNumber = Random.value;
+		if (randomNumber < 0.02) 
         {
             switch_sound.Play();
             if (charge1 == 1)
@@ -85,7 +87,7 @@ public class manageforce : MonoBehaviour
         }
 
 
-		//flip pole for Purple
+		// Flip pole for Purple
         if (Input.GetKeyDown(KeyCode.C))
         {
             switch_sound.Play();
@@ -96,8 +98,10 @@ public class manageforce : MonoBehaviour
         }
 
 
-		//flip pole for Green
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+		// Flip pole for Green
+        //if (Input.GetKeyDown(KeyCode.LeftArrow))
+		float randomNumber3 = Random.value;
+		if (randomNumber3 < 0.02) 
         {
             switch_sound.Play();
             if (charge3 == 1)
@@ -107,7 +111,7 @@ public class manageforce : MonoBehaviour
         }
 
 
-		//flip pole for Blue
+		// Flip pole for Blue
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             switch_sound.Play();
