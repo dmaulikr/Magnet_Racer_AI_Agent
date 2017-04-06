@@ -14,7 +14,7 @@ public class lapcounter : MonoBehaviour
     public bool second = false;
     public bool third = false;
 
-    managelaps1 secnd;
+    
 
     tracklaptrigger next;
     tracklaptrigger winning;
@@ -29,7 +29,7 @@ public class lapcounter : MonoBehaviour
     Rigidbody2D rb3;
     Rigidbody2D rb4;
 
-    managelaps1 lp;
+   
     int _lap;
    
 
@@ -40,7 +40,7 @@ public class lapcounter : MonoBehaviour
         _lap = 0;
         SetNextTrigger(first);
         UpdateText();
-        lp= gameObject.GetComponent<managelaps1>();
+        
     }
 
 
@@ -59,7 +59,7 @@ public class lapcounter : MonoBehaviour
 
         if (textMesh2)
         {
-            Debug.Log("called");
+            // printing and finishing each racers control when they cross finish line
             if (_lap == 5 )
                 {
                 
@@ -95,6 +95,7 @@ public class lapcounter : MonoBehaviour
 
 
     }
+
     // when lap trigger is entered
     public void OnLapTrigger(tracklaptrigger trigger)
     {
@@ -111,6 +112,7 @@ public class lapcounter : MonoBehaviour
         }
     }
 
+    //adding the next lap trigger counter into
     void SetNextTrigger(tracklaptrigger trigger)
     {
 
