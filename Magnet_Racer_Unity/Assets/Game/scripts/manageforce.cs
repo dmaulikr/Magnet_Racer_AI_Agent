@@ -76,8 +76,9 @@ public class manageforce : MonoBehaviour
 
         // Flip pole for Red
 		// Red is a random move player
-		float randomNumber = Random.value;
-		if (randomNumber < 0.02) 
+		//if (Input.GetKeyDown(KeyCode.Z))
+        float randomNumber = Random.value;
+		if (randomNumber < 0.02)
         {
             switch_sound.Play();
             if (charge1 == 1)
@@ -99,9 +100,11 @@ public class manageforce : MonoBehaviour
 
 
 		// Flip pole for Green
-        //if (Input.GetKeyDown(KeyCode.LeftArrow))
-		float randomNumber3 = Random.value;
-		if (randomNumber3 < 0.02) 
+        // Green is a random move player
+		/*
+        float randomNumber3 = Random.value;
+        if (randomNumber3 < 0.02)*/
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             switch_sound.Play();
             if (charge3 == 1)
@@ -139,7 +142,7 @@ public class manageforce : MonoBehaviour
             count += 1;
             flag1 = true;
         }
-        if ((GameObject.Find("PURPLE").GetComponent<magnetscript2>().done2 == true && flag2 != true)|| (count==3 && flag2!=true))
+        if ((GameObject.Find("PURPLE").GetComponent<magnetscript>().done == true && flag2 != true)|| (count==3 && flag2!=true))
         {
             Debug.Log("managinglappppp" + count);
             if (count == 0)
@@ -154,7 +157,7 @@ public class manageforce : MonoBehaviour
             count += 1;
             flag2 = true;
         }
-        if ((GameObject.Find("GREEN").GetComponent<magnetscript3>().done3 == true && flag3 != true) || (count==3 && flag3 !=true))
+        if ((GameObject.Find("GREEN").GetComponent<magnetscript>().done == true && flag3 != true) || (count==3 && flag3 !=true))
         {
             if (count == 0)
                 greenwin = true;
@@ -168,7 +171,7 @@ public class manageforce : MonoBehaviour
             count += 1;
             flag3 = true;
         }
-        if ((GameObject.Find("BLUE").GetComponent<magnetscript4>().done4 == true && flag4 != true) || (count ==3 && flag4!=true))
+        if ((GameObject.Find("BLUE").GetComponent<magnetscript>().done == true && flag4 != true) || (count ==3 && flag4!=true))
         {
             if (count == 0)
                 bluewin = true;
@@ -184,7 +187,7 @@ public class manageforce : MonoBehaviour
         }
 
 		/*
-		 * Printing the results on screen
+		 * Printing the results on screen when race is finished
 		 */
         if (count == 4)
         {

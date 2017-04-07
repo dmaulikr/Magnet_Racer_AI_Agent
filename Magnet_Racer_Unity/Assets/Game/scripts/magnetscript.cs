@@ -12,8 +12,13 @@ public class magnetscript : manageforce
     public GameObject repel5;
     public GameObject repel6;
     public GameObject repel7;
-   // public GameObject repel8;
-   // public GameObject repel9;
+
+    // local charges to hold value of each individual racer charge changes
+    float thisCharge;
+    float otherCharge1;
+    float otherCharge2;
+    float otherCharge3;
+
     public float repelling = 1000;
     public float repelling2 = 500;
 
@@ -32,28 +37,48 @@ public class magnetscript : manageforce
         updatecharge();
 
         myrigidbody = GetComponent<Rigidbody2D>();
+
        
     }
 
     public void updatecharge()
     {
-        if (charge1 == 1)
-            spriterender.sprite = spritepositive;
-        else if(charge1 == -1)
-            spriterender.sprite = spritenegative;
-    }
+        //updating value of this charge and the other charges
+        switch(gameObject.tag)
+        {
+            case "RED": thisCharge = charge1;
+                        otherCharge1 = charge2;
+                        otherCharge2 = charge3;
+                        otherCharge3 = charge4;
+                        break;
+            case "PURPLE": thisCharge = charge2;
+                           otherCharge1 = charge1;
+                           otherCharge2 = charge3;
+                           otherCharge3 = charge4;
+                           break;
+            case "GREEN": thisCharge = charge3;
+                          otherCharge1 = charge1;
+                          otherCharge2 = charge2;
+                          otherCharge3 = charge4;
+                          break;
+            case "BLUE": thisCharge = charge4;
+                         otherCharge1 = charge1;
+                         otherCharge2 = charge2;
+                         otherCharge3 = charge3;
+                         break;
+        }
 
-    public void updatecolor()
-    {
-        //Debug.Log("works");
-        Color color = charge1 > 0 ? Color.green : Color.red;
-        GetComponent<Renderer>().material.color = color;
+        //updating sprite of this charge
+        
+            if (thisCharge == 1)
+                spriterender.sprite = spritepositive;
+            else if (thisCharge == -1)
+                spriterender.sprite = spritenegative;
     }
-
    
     void FixedUpdate()
     {
-        //updatecolor();
+      
         updatecharge();
         
         if(myrigidbody.isKinematic == true)
@@ -70,9 +95,9 @@ public class magnetscript : manageforce
 
         float force1 = repelling / traveldistance1;
 
-        Vector3 newforce1 = direction1 * force1 * charge1 * polecharge * Time.smoothDeltaTime;
+        Vector3 newforce1 = direction1 * force1 * thisCharge * polecharge * Time.smoothDeltaTime;
 
-        if (traveldistance1 <= 13)
+        if (traveldistance1 <= 14)
             myrigidbody.AddForce(newforce1);
 		
 		/*
@@ -83,9 +108,9 @@ public class magnetscript : manageforce
 
         float force2 = repelling / traveldistance2;
 
-        Vector3 newforce2 = direction2 * force2 * charge1 * -polecharge * Time.smoothDeltaTime;
+        Vector3 newforce2 = direction2 * force2 * thisCharge * -polecharge * Time.smoothDeltaTime;
 
-        if (traveldistance2 <= 13)
+        if (traveldistance2 <= 14)
             myrigidbody.AddForce(newforce2);
 
 		/*
@@ -96,9 +121,9 @@ public class magnetscript : manageforce
 
         float force3 = repelling / traveldistance3;
 
-        Vector3 newforce3 = direction3 * force3 * charge1 * polecharge * Time.smoothDeltaTime;
+        Vector3 newforce3 = direction3 * force3 * thisCharge * polecharge * Time.smoothDeltaTime;
 
-        if (traveldistance3 <= 13)
+        if (traveldistance3 <= 14)
             myrigidbody.AddForce(newforce3);
 
 
@@ -110,9 +135,9 @@ public class magnetscript : manageforce
 
         float force4 = repelling / traveldistance4;
 
-        Vector3 newforce4 = direction4 * force4 * charge1 * -polecharge * Time.smoothDeltaTime;
+        Vector3 newforce4 = direction4 * force4 * thisCharge * -polecharge * Time.smoothDeltaTime;
 
-        if (traveldistance4 <= 13)
+        if (traveldistance4 <= 14)
             myrigidbody.AddForce(newforce4);
        
 		/*
@@ -123,7 +148,7 @@ public class magnetscript : manageforce
 
         float force5 = repelling2 / traveldistance5;
 
-        Vector3 newforce5 = direction5 * force5 * charge1 * charge2 * Time.smoothDeltaTime;
+        Vector3 newforce5 = direction5 * force5 * thisCharge * otherCharge1 * Time.smoothDeltaTime;
 
         if (traveldistance5 <= 4)
             myrigidbody.AddForce(newforce5);
@@ -137,7 +162,7 @@ public class magnetscript : manageforce
 
         float force6 = repelling2 / traveldistance6;
 
-        Vector3 newforce6 = direction6 * force6 * charge1 * charge3 * Time.smoothDeltaTime;
+        Vector3 newforce6 = direction6 * force6 * thisCharge * otherCharge2 * Time.smoothDeltaTime;
 
         if (traveldistance6 <= 4)
             myrigidbody.AddForce(newforce6);
@@ -150,35 +175,11 @@ public class magnetscript : manageforce
 
         float force7 = repelling2 / traveldistance7;
 
-        Vector3 newforce7 = direction7 * force7 * charge1 * charge4 * Time.smoothDeltaTime;
+        Vector3 newforce7 = direction7 * force7 * thisCharge * otherCharge3 * Time.smoothDeltaTime;
 
         if (traveldistance7 <= 4)
             myrigidbody.AddForce(newforce7);
-  /*
-        Vector3 direction8 = (transform.position - repel8.transform.position).normalized;
-        float traveldistance8 = Vector3.Distance(transform.position, repel8.transform.position);
 
-        float force8 = repelling / traveldistance8;
-
-
-        Vector3 newforce8 = direction8 * force8 * charge1 * -polecharge * Time.smoothDeltaTime;
-
-
-        if (traveldistance8 <= 10)
-            myrigidbody.AddForce(newforce8);
-
-        Vector3 direction9 = (transform.position - repel9.transform.position).normalized;
-        float traveldistance9 = Vector3.Distance(transform.position, repel9.transform.position);
-
-        float force9 = repelling / traveldistance9;
-
-
-        Vector3 newforce9 = direction9 * force9 * charge1 * polecharge * Time.smoothDeltaTime;
-
-
-        if (traveldistance9 <= 10)
-            myrigidbody.AddForce(newforce9);
-*/
     }
 
 
