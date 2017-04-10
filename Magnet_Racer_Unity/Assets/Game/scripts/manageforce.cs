@@ -131,7 +131,7 @@ public class ManageForce : MonoBehaviour
 		/*
 		 * * Counting position of each racer in the end
 		 */
-        if ((GameObject.Find("RED").GetComponent<magnetscript>().done == true && flag1 != true)|| (count==3 && flag1!=true))
+        if ((GameObject.Find("RED").GetComponent<MagnetScript>().done == true && flag1 != true)|| (count==3 && flag1!=true))
         {
             Debug.Log("managinglaps" + count);
             if (count == 0)
@@ -146,7 +146,7 @@ public class ManageForce : MonoBehaviour
             count += 1;
             flag1 = true;
         }
-        if ((GameObject.Find("PURPLE").GetComponent<magnetscript>().done == true && flag2 != true)|| (count==3 && flag2!=true))
+		if ((GameObject.Find("PURPLE").GetComponent<MagnetScript>().done == true && flag2 != true)|| (count==3 && flag2!=true))
         {
             Debug.Log("managinglappppp" + count);
             if (count == 0)
@@ -161,7 +161,7 @@ public class ManageForce : MonoBehaviour
             count += 1;
             flag2 = true;
         }
-        if ((GameObject.Find("GREEN").GetComponent<magnetscript>().done == true && flag3 != true) || (count==3 && flag3 !=true))
+		if ((GameObject.Find("GREEN").GetComponent<MagnetScript>().done == true && flag3 != true) || (count==3 && flag3 !=true))
         {
             if (count == 0)
                 greenwin = true;
@@ -175,7 +175,7 @@ public class ManageForce : MonoBehaviour
             count += 1;
             flag3 = true;
         }
-        if ((GameObject.Find("BLUE").GetComponent<magnetscript>().done == true && flag4 != true) || (count ==3 && flag4!=true))
+		if ((GameObject.Find("BLUE").GetComponent<MagnetScript>().done == true && flag4 != true) || (count ==3 && flag4!=true))
         {
             if (count == 0)
                 bluewin = true;
