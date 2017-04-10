@@ -53,7 +53,6 @@ public class MagnetScript : MonoBehaviour
    
     void FixedUpdate()
     {
-      
 		updateSprite();
         
         if(myrigidbody.isKinematic == true)
