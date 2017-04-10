@@ -37,8 +37,6 @@ public class MagnetScript : ManageForce
         updatecharge();
 
         myrigidbody = GetComponent<Rigidbody2D>();
-
-       
     }
 
     public void updatecharge()
@@ -181,8 +179,6 @@ public class MagnetScript : ManageForce
             myrigidbody.AddForce(newforce7);
 
     }
-
-
 }
 
 

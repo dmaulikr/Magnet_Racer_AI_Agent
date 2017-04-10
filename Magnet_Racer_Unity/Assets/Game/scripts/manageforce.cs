@@ -6,7 +6,8 @@ public class ManageForce : MonoBehaviour
     public AudioSource switch_sound = null;
 
 	//Decision making classes
-	private DecisionTree decisionTree;
+	private DecisionTree decisionTree = new DecisionTree ();
+	private RandomAgent randomAgent = new RandomAgent ();
 
 	//Variables for the in game texts
     public TextMesh textmesh;
@@ -80,8 +81,7 @@ public class ManageForce : MonoBehaviour
         // Flip pole for Red
 		// Red is a random move player
 		//if (Input.GetKeyDown(KeyCode.Z))
-        float randomNumber = Random.value;
-		if (randomNumber < 0.02)
+		if (randomAgent.getDecision())
         {
             switch_sound.Play();
             if (charge1 == 1)
@@ -104,10 +104,6 @@ public class ManageForce : MonoBehaviour
 
 
 		// Flip pole for Green
-        // Green is a random move player
-		/*
-        float randomNumber3 = Random.value;
-        if (randomNumber3 < 0.02)*/
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             switch_sound.Play();
