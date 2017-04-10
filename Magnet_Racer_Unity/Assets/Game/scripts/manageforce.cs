@@ -5,6 +5,9 @@ public class manageforce : MonoBehaviour
 {
     public AudioSource switch_sound = null;
 
+	//Decision making classes
+	private DecisionTree decisionTree;
+
 	//Variables for the in game texts
     public TextMesh textmesh;
     public TextMesh textmesh2;
@@ -89,7 +92,8 @@ public class manageforce : MonoBehaviour
 
 
 		// Flip pole for Purple
-        if (Input.GetKeyDown(KeyCode.C))
+		// Old input: Input.GetKeyDown(KeyCode.C)
+		if (decisionTree.getDecision())
         {
             switch_sound.Play();
             if (charge2 == 1)
