@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class lapcounter : MonoBehaviour
+public class LapCounter : MonoBehaviour
 {
 
     public tracklaptrigger first;

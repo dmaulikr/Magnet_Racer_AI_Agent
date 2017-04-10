@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class magnetscript : manageforce
+public class MagnetScript : manageforce
 {
 
     

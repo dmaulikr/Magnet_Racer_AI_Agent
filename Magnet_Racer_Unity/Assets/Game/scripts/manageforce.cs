@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class manageforce : MonoBehaviour
+public class ManageForce : MonoBehaviour
 {
     public AudioSource switch_sound = null;
 
