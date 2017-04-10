@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class playscreen : MonoBehaviour {
+public class PlayScreen : MonoBehaviour {
     float delay = 3;
     public AudioSource start_sound;
 

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class loadonclick : MonoBehaviour {
+public class LoadOnClick : MonoBehaviour {
    
     public AudioSource start_sound;
     public AudioSource other_sound;
@@ -17,7 +17,8 @@ public class loadonclick : MonoBehaviour {
         
         Application.LoadLevel(level);
     }
-public void quit()
+
+	public void quit()
     {
         Application.Quit();
     }

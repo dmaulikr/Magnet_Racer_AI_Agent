@@ -4,7 +4,7 @@ using System.Collections;
 public class LapCounter : MonoBehaviour
 {
 
-    public tracklaptrigger first;
+    public TrackLapTrigger first;
     public TextMesh textMesh;
     public TextMesh textMesh2;
     public TextMesh textMesh3;
@@ -16,8 +16,8 @@ public class LapCounter : MonoBehaviour
 
     
 
-    tracklaptrigger next;
-    tracklaptrigger winning;
+	TrackLapTrigger next;
+	TrackLapTrigger winning;
 
     GameObject thePlayer ;
     GameObject thePlayer2 ;
@@ -97,7 +97,7 @@ public class LapCounter : MonoBehaviour
     }
 
     // when lap trigger is entered
-    public void OnLapTrigger(tracklaptrigger trigger)
+	public void OnLapTrigger(TrackLapTrigger trigger)
     {
         
         if (trigger == next)
@@ -113,7 +113,7 @@ public class LapCounter : MonoBehaviour
     }
 
     //adding the next lap trigger counter into
-    void SetNextTrigger(tracklaptrigger trigger)
+	void SetNextTrigger(TrackLapTrigger trigger)
     {
 
         next = trigger.next;

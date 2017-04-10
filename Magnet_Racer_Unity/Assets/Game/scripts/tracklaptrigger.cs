@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TracklapTrigger : MonoBehaviour
+public class TrackLapTrigger : MonoBehaviour
 {
 
     // next trigger in the lap
-    public tracklaptrigger next;
+    public TrackLapTrigger next;
 
     // when an object enters this trigger
     void OnTriggerEnter2D(Collider2D other)
     {
       
-        lapcounter carLapCounter = other.gameObject.GetComponent<lapcounter>();
+        LapCounter carLapCounter = other.gameObject.GetComponent<LapCounter>();
         
         if (carLapCounter)
         {
