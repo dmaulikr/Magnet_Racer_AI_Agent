@@ -5,9 +5,11 @@ public class ManageForce : MonoBehaviour
 {
     public AudioSource switch_sound = null;
 
-	//Decision making classes
-	private DecisionTree decisionTree = new DecisionTree ();
-	private RandomAgent randomAgent = new RandomAgent ();
+	//Magnet Objects
+	public GameObject green;
+	public GameObject purple;
+	public GameObject red;
+	public GameObject blue;
 
 	//Variables for the in game texts
     public TextMesh textmesh;
@@ -15,19 +17,14 @@ public class ManageForce : MonoBehaviour
     public TextMesh textmesh3;
     public TextMesh textmesh4;
 
-	//Variables for the charges of each magnet racer
-    public float charge1 = 1;
-    public float charge2 = 1;
-    public float charge3 = 1;
-    public float charge4 = 1;
-    public float polecharge;	//Varaible for Push poles
-
     //Variables for win check
     bool flag1;
     bool flag2;
     bool flag3;
     bool flag4;
-	int count;		//Variable for counting each players final position
+
+	//Variable for counting number of players across finish line
+	int count;	
 
 	//Variable for Red's final position check
     bool redwin;
@@ -56,74 +53,11 @@ public class ManageForce : MonoBehaviour
     void start()
     {
         count = 0;
-        charge1 = GetComponent<float>();
-        charge2 = GetComponent<float>();
-        charge3 = GetComponent<float>();
-        charge4 = GetComponent<float>();
-        polecharge = GetComponent<float>();
     }
 
     
-
     void Update()
     {
-		// Testing factor not yet removed.
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-        {
-           
-            if (polecharge == 1)
-                polecharge = -1;
-            else if (polecharge == -1)
-                polecharge = 1;
-        }
-
-
-        // Flip pole for Red
-		// Red is a random move player
-		//if (Input.GetKeyDown(KeyCode.Z))
-		if (randomAgent.getDecision())
-        {
-            switch_sound.Play();
-            if (charge1 == 1)
-                charge1 = -1;
-            else if (charge1 == -1)
-                charge1 = 1;
-        }
-
-
-		// Flip pole for Purple
-		// Old input: Input.GetKeyDown(KeyCode.C)
-		if (decisionTree.getDecision())
-        {
-            switch_sound.Play();
-            if (charge2 == 1)
-                charge2 = -1;
-            else if (charge2 == -1)
-                charge2 = 1;
-        }
-
-
-		// Flip pole for Green
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            switch_sound.Play();
-            if (charge3 == 1)
-                charge3 = -1;
-            else if (charge3 == -1)
-                charge3 = 1;
-        }
-
-
-		// Flip pole for Blue
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            switch_sound.Play();
-            if (charge4 == 1)
-                charge4 = -1;
-            else if (charge4 == -1)
-                charge4 = 1;
-        }
-
 		/*
 		 * * Counting position of each racer in the end
 		 */
