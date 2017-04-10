@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class tracklaptrigger : MonoBehaviour
+public class TracklapTrigger : MonoBehaviour
 {
 
     // next trigger in the lap
