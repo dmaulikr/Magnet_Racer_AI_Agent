@@ -17,8 +17,6 @@ public class TrackLapTrigger : MonoBehaviour
         {
             Debug.Log("lap trigger " + gameObject.name);
             carLapCounter.OnLapTrigger(this);
-            
-           
         }
     }
 }

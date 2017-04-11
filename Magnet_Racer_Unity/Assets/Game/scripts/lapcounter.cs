@@ -4,122 +4,64 @@ using System.Collections;
 public class LapCounter : MonoBehaviour
 {
 
-    public TrackLapTrigger first;
-    public TextMesh textMesh;
-    public TextMesh textMesh2;
-    public TextMesh textMesh3;
+    public TrackLapTrigger currentLapTrigger;
+	public TextMesh lapCountText;
 
+    bool win = false;
 
-    public bool win = false;
-    public bool second = false;
-    public bool third = false;
-
-    
-
-	TrackLapTrigger next;
+	TrackLapTrigger nextLapTrigger;
 	TrackLapTrigger winning;
 
-    GameObject thePlayer ;
-    GameObject thePlayer2 ;
-    GameObject thePlayer3 ;
-    GameObject thePlayer4 ;
-
-    Rigidbody2D rb;
-    Rigidbody2D rb2;
-    Rigidbody2D rb3;
-    Rigidbody2D rb4;
-
-   
     int _lap;
    
-
     // Use this for initialization
     void Start()
     {
-       
         _lap = 0;
-        SetNextTrigger(first);
+		SetNextTrigger(currentLapTrigger);
         UpdateText();
-        
     }
 
 
-    // update lap counter text
+    // Update lap counter text
     void UpdateText()
     {
-        if (textMesh)
+		if (lapCountText)
         {
-           textMesh.text = string.Format("{0}", _lap);
+			lapCountText.text = string.Format("{0}", _lap);
         }
     }
 
+	// Check for a winner
     public void winner()
     {
-       
-
-        if (textMesh2)
+        if (_lap == 5)
         {
-            // printing and finishing each racers control when they cross finish line
-            if (_lap == 5 )
-                {
-                
-                textMesh2.text = string.Format("Way to go " + gameObject.name);
-
-                if (gameObject.name == "BLUE")
-                {
-                    textMesh2.color = Color.blue;
-                    win = true;
-                }
-                else
-                 if (gameObject.name == "RED")
-                {
-                    textMesh2.color = Color.red;
-                    win = true;
-                }
-                else
-                 if (gameObject.name == "GREEN")
-                {
-                    textMesh2.color = Color.green;
-                    win = true;
-                }
-                else
-                 if (gameObject.name == "PURPLE")
-                {
-                    textMesh2.color = Color.magenta;
-                    win = true;
-                }
-                GetComponent<Rigidbody2D>().isKinematic = true;
-            }
+			win = true;
+            GetComponent<Rigidbody2D>().isKinematic = true;
         }
-    
-
-
     }
 
     // when lap trigger is entered
 	public void OnLapTrigger(TrackLapTrigger trigger)
     {
-        
-        if (trigger == next)
+        if (trigger == nextLapTrigger)
         {
-            if (first == next)
+			if (currentLapTrigger == nextLapTrigger)
             {
                 _lap++;
                 UpdateText();
                 winner();
             }
-            SetNextTrigger(next);
+            SetNextTrigger(nextLapTrigger);
         }
     }
 
     //adding the next lap trigger counter into
 	void SetNextTrigger(TrackLapTrigger trigger)
     {
-
-        next = trigger.next;
+        nextLapTrigger = trigger.next;
      
-        Debug.Log("next=" +next.gameObject.name);
+        Debug.Log("next=" + nextLapTrigger.gameObject.name);
     }
-
-  
 }
