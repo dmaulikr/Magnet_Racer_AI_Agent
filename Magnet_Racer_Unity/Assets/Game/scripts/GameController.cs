@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameController : MonoBehaviour
 {
@@ -16,45 +17,27 @@ public class GameController : MonoBehaviour
     public TextMesh purplePlaceText;
     public TextMesh greenPlaceText;
     public TextMesh bluePlaceText;
-
 	public TextMesh wayToGoText;
 
-    //Variables for win check
-    bool flag1;
-    bool flag2;
-    bool flag3;
-    bool flag4;
+    //Variables for win checks
+    private bool flagRed;
+	private bool flagBlue;
+	private bool flagGreen;
+	private bool flagPurple;
 
 	//Variable for counting number of players across finish line
-	int count;	
+	private int count;	
 
-	//Variable for Red's final position check
-    bool redwin;
-    bool redsecond;
-    bool redthird;
-    bool redfourth;
+	// List the winners in order 
+	// rankings[0] should be first place
+	// rankings[3] should be last place
+	private IList<GameObject> rankings;
+	private IList<string> rankStrings = new List<string> { "First Place - ", "Second Place - ", "Third Place - ", "Fourth Place - " };
 
-	//Variable for Purple's final position check
-    bool purplewin;
-    bool purplesecond;
-    bool purplethird;
-    bool purplefourth;
-
-	//Variable for Green's final position check
-    bool greenwin;
-    bool greensecond;
-    bool greenthird;
-    bool greenfourth;
-
-	//Variable for Blue's final position check
-    bool bluewin;
-    bool bluesecond;
-    bool bluethird;
-    bool bluefourth;
-
-    void start()
+    void Start()
     {
         count = 0;
+		rankings = new List<GameObject> ();
     }
 
     
@@ -63,67 +46,38 @@ public class GameController : MonoBehaviour
 		/*
 		 * * Counting position of each racer in the end
 		 */
-		if ((red.GetComponent<Magnet>().done == true && flag1 != true)|| (count==3 && flag1!=true))
-        {
-			printSuccess (red);
-            Debug.Log("managinglaps" + count);
-            if (count == 0)
-                redwin = true;
-            else if (count == 1)
-                redsecond = true;
-            else if (count == 2)
-                redthird = true;
-            else if (count == 3)
-                redfourth = true;
+		if ((red.GetComponent<Magnet>().done == true && !flagRed)|| (count == 3 && !flagRed))
+		{
+			Debug.Log("managing laps" + count);
 
+			printSuccess (red);
+			rankings.Add (red);
             count += 1;
-            flag1 = true;
+			flagRed = true;
         }
-		if ((purple.GetComponent<Magnet>().done == true && flag2 != true)|| (count==3 && flag2!=true))
+		if ((purple.GetComponent<Magnet>().done == true && !flagPurple)|| (count == 3 && !flagPurple))
         {
 			printSuccess (purple);
-            Debug.Log("managinglappppp" + count);
-            if (count == 0)
-                purplewin = true;
-            else if (count == 1)
-                purplesecond = true;
-            else if (count == 2)
-                purplethird = true;
-            else if (count == 3)
-                purplefourth = true;
-
+            Debug.Log("managing laps" + count);
+			rankings.Add (purple);
             count += 1;
-            flag2 = true;
+			flagPurple = true;
         }
-		if ((green.GetComponent<Magnet>().done == true && flag3 != true) || (count==3 && flag3 !=true))
+		if ((green.GetComponent<Magnet>().done == true && !flagGreen) || (count == 3 && !flagGreen))
         {
 			printSuccess (green);
-            if (count == 0)
-                greenwin = true;
-            else if (count == 1)
-                greensecond = true;
-            else if (count == 2)
-                greenthird = true;
-            else if (count == 3)
-                greenfourth = true;
+			rankings.Add (green);
 
             count += 1;
-            flag3 = true;
+			flagGreen = true;
         }
-		if ((blue.GetComponent<Magnet>().done == true && flag4 != true) || (count ==3 && flag4!=true))
+		if ((blue.GetComponent<Magnet>().done == true && !flagBlue) || (count == 3 && !flagBlue))
         {
 			printSuccess (blue);
-            if (count == 0)
-                bluewin = true;
-            else if (count == 1)
-                bluesecond = true;
-            else if (count == 2)
-                bluethird = true;
-            else if (count == 3)
-                bluefourth = true;
+			rankings.Add (blue);
 
             count += 1;
-            flag4 = true;
+			flagBlue = true;
         }
 
 		/*
@@ -131,42 +85,25 @@ public class GameController : MonoBehaviour
 		 */
         if (count == 4)
         {
-            if (redwin == true)
-                redPlaceText.text = string.Format("WINNER RED");
-            else if (redsecond == true)
-                redPlaceText.text = string.Format("Second RED");
-            else if (redthird == true)
-                redPlaceText.text = string.Format("Third RED");
-            else if (redfourth == true)
-                redPlaceText.text = string.Format("Fourth RED");
-
-            if (purplewin == true)
-                purplePlaceText.text = string.Format("WINNER PURPLE");
-            else if (purplesecond == true)
-                purplePlaceText.text = string.Format("Second PURPLE");
-            else if (purplethird == true)
-                purplePlaceText.text = string.Format("Third PURPLE");
-            else if (purplefourth == true)
-                purplePlaceText.text = string.Format("Fourth PURPLE");
-
-            if (greenwin == true)
-                greenPlaceText.text = string.Format("WINNER GREEN");
-            else if (greensecond == true)
-                greenPlaceText.text = string.Format("Second GREEN");
-            else if (greenthird == true)
-                greenPlaceText.text = string.Format("Third GREEN");
-            else if (greenfourth == true)
-                greenPlaceText.text = string.Format("Fourth GREEN");
-
-            if (bluewin == true)
-                bluePlaceText.text = string.Format("WINNER BLUE");
-            else if (bluesecond == true)
-                bluePlaceText.text = string.Format("Second BLUE");
-            else if (bluethird == true)
-                bluePlaceText.text = string.Format("Third BLUE");
-            else if (bluefourth == true)
-                bluePlaceText.text = string.Format("Fourth BLUE");
-
+			for(int i = 0; i < 4; i++) {
+				GameObject item = rankings [i];
+				string message = rankStrings [i] + item.name;
+				switch (item.name) {
+					case "BLUE":
+						bluePlaceText.text = message;
+						break;
+					case "RED":
+						redPlaceText.text = message;
+						break;
+					case "GREEN":
+						greenPlaceText.text = message;
+						break;
+					default:
+						purplePlaceText.text = message;
+						break;	
+				}
+			}
+				
             Time.timeScale = 0;
         }
     }
