@@ -84,15 +84,5 @@ public class DecisionTree : MonoBehaviour {
 				}
 			}
 		}
-
-
-		// Get a random number
-		float randomNumber = Random.value;
-
-		// Don't want to toggle too often, so use a probabilty 
-		// of 0.02
-		if (randomNumber < 0.02) {
-			magnetScript.makeMove ();
-		}
 	}
 }
