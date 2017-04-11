@@ -29,4 +29,6 @@ sysinfo.txt
 *.unitypackage
 
 # Meta data
-/Magnet_Racer_Unity/Library/metadata/**
+**/Magnet_Racer_Unity/Library/metadata/**
+**/Magnet_Racer_Unity/Library/**
+**/Magnet_Racer_Unity/Temp/**
