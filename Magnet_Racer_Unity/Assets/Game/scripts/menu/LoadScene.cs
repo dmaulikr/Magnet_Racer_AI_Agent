@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LoadOnClick : MonoBehaviour {
+public class LoadScene : MonoBehaviour {
    
     public AudioSource start_sound;
     public AudioSource other_sound;
