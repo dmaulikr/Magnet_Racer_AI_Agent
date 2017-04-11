@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class DecisionTree : MonoBehaviour {
 
-	private MagnetScript magnetScript;
+	private Magnet magnetScript;
 
 	private float y1_slope = 0.446f;
 	private float y_const = 1.25f;
 	private float y2_slope = -0.446f;
 
 	void Start() {
-		magnetScript = GetComponent<MagnetScript> ();
+		magnetScript = GetComponent<Magnet> ();
 	}
 
 	//Returns true if you want to toggle

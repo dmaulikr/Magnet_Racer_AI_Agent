@@ -63,7 +63,7 @@ public class GameController : MonoBehaviour
 		/*
 		 * * Counting position of each racer in the end
 		 */
-        if ((red.GetComponent<MagnetScript>().done == true && flag1 != true)|| (count==3 && flag1!=true))
+		if ((red.GetComponent<Magnet>().done == true && flag1 != true)|| (count==3 && flag1!=true))
         {
 			printSuccess (red);
             Debug.Log("managinglaps" + count);
@@ -79,7 +79,7 @@ public class GameController : MonoBehaviour
             count += 1;
             flag1 = true;
         }
-		if ((purple.GetComponent<MagnetScript>().done == true && flag2 != true)|| (count==3 && flag2!=true))
+		if ((purple.GetComponent<Magnet>().done == true && flag2 != true)|| (count==3 && flag2!=true))
         {
 			printSuccess (purple);
             Debug.Log("managinglappppp" + count);
@@ -95,7 +95,7 @@ public class GameController : MonoBehaviour
             count += 1;
             flag2 = true;
         }
-		if ((green.GetComponent<MagnetScript>().done == true && flag3 != true) || (count==3 && flag3 !=true))
+		if ((green.GetComponent<Magnet>().done == true && flag3 != true) || (count==3 && flag3 !=true))
         {
 			printSuccess (green);
             if (count == 0)
@@ -110,7 +110,7 @@ public class GameController : MonoBehaviour
             count += 1;
             flag3 = true;
         }
-		if ((blue.GetComponent<MagnetScript>().done == true && flag4 != true) || (count ==3 && flag4!=true))
+		if ((blue.GetComponent<Magnet>().done == true && flag4 != true) || (count ==3 && flag4!=true))
         {
 			printSuccess (blue);
             if (count == 0)

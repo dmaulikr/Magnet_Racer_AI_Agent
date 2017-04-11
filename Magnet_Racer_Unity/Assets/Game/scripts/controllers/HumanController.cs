@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class HumanController : MonoBehaviour {
 
-    private MagnetScript magnetScript;
+	private Magnet magnetScript;
 
     void Start()
     {
-        magnetScript = GetComponent<MagnetScript>();
+		magnetScript = GetComponent<Magnet>();
     }
 
     // Update is called once per frame

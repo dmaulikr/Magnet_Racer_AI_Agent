@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MagnetScript : MonoBehaviour
+public class Magnet : MonoBehaviour
 {
     public GameObject pole1;
     public GameObject pole2;
@@ -122,7 +122,7 @@ public class MagnetScript : MonoBehaviour
 
         float force5 = repelling2 / traveldistance5;
 
-		Vector3 newforce5 = direction5 * force5 * charge * opponent1.GetComponent<MagnetScript>().getCharge() * Time.smoothDeltaTime;
+		Vector3 newforce5 = direction5 * force5 * charge * opponent1.GetComponent<Magnet>().getCharge() * Time.smoothDeltaTime;
 
         if (traveldistance5 <= 4)
             myrigidbody.AddForce(newforce5);
@@ -136,7 +136,7 @@ public class MagnetScript : MonoBehaviour
 
         float force6 = repelling2 / traveldistance6;
 
-		Vector3 newforce6 = direction6 * force6 * charge * opponent2.GetComponent<MagnetScript>().getCharge() * Time.smoothDeltaTime;
+		Vector3 newforce6 = direction6 * force6 * charge * opponent2.GetComponent<Magnet>().getCharge() * Time.smoothDeltaTime;
 
         if (traveldistance6 <= 4)
             myrigidbody.AddForce(newforce6);
@@ -149,7 +149,7 @@ public class MagnetScript : MonoBehaviour
 
         float force7 = repelling2 / traveldistance7;
 
-		Vector3 newforce7 = direction7 * force7 * charge * opponent3.GetComponent<MagnetScript>().getCharge() * Time.smoothDeltaTime;
+		Vector3 newforce7 = direction7 * force7 * charge * opponent3.GetComponent<Magnet>().getCharge() * Time.smoothDeltaTime;
 
         if (traveldistance7 <= 4)
             myrigidbody.AddForce(newforce7);
