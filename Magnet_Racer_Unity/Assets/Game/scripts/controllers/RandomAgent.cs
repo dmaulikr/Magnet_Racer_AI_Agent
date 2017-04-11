@@ -10,10 +10,10 @@ using UnityEngine;
  */
 public class RandomAgent : MonoBehaviour {
 
-	private MagnetScript magnetScript;
+	private Magnet magnetScript;
 
 	void Start() {
-		magnetScript = GetComponent<MagnetScript> ();
+		magnetScript = GetComponent<Magnet> ();
 	}
 
 	//Returns true if you want to toggle

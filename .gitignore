@@ -27,3 +27,6 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+# Meta data
+/Magnet_Racer_Unity/Library/metadata/**
