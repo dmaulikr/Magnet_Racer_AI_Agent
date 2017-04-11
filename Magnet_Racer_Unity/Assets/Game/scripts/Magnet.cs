@@ -55,7 +55,7 @@ public class Magnet : MonoBehaviour
     {
 		updateSprite();
         
-        if(myrigidbody.isKinematic == true)
+        if(GetComponent<Rigidbody2D>().constraints == RigidbodyConstraints2D.FreezePosition)
         {
             
             done = true;

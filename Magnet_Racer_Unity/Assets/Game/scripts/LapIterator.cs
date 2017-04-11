@@ -6,6 +6,7 @@ public class LapIterator : MonoBehaviour
 
     public GateTrigger currentLapTrigger;
 	public TextMesh lapCountText;
+    public GameObject endPoint;
 
     bool win = false;
 
@@ -37,7 +38,8 @@ public class LapIterator : MonoBehaviour
     {
         if (_lap == 1)
         {
-            GetComponent<Rigidbody2D>().isKinematic = true;
+            GetComponent<Rigidbody2D>().transform.position = endPoint.transform.position;
+            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
         }
     }
 
