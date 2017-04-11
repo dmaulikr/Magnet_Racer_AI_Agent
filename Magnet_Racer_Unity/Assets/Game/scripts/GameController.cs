@@ -12,10 +12,12 @@ public class GameController : MonoBehaviour
 	public GameObject blue;
 
 	//Variables for the in game texts
-    public TextMesh textmesh;
-    public TextMesh textmesh2;
-    public TextMesh textmesh3;
-    public TextMesh textmesh4;
+    public TextMesh redPlaceText;
+    public TextMesh purplePlaceText;
+    public TextMesh greenPlaceText;
+    public TextMesh bluePlaceText;
+
+	public TextMesh wayToGoText;
 
     //Variables for win check
     bool flag1;
@@ -63,6 +65,7 @@ public class GameController : MonoBehaviour
 		 */
         if ((red.GetComponent<MagnetScript>().done == true && flag1 != true)|| (count==3 && flag1!=true))
         {
+			printSuccess (red);
             Debug.Log("managinglaps" + count);
             if (count == 0)
                 redwin = true;
@@ -78,6 +81,7 @@ public class GameController : MonoBehaviour
         }
 		if ((purple.GetComponent<MagnetScript>().done == true && flag2 != true)|| (count==3 && flag2!=true))
         {
+			printSuccess (purple);
             Debug.Log("managinglappppp" + count);
             if (count == 0)
                 purplewin = true;
@@ -93,6 +97,7 @@ public class GameController : MonoBehaviour
         }
 		if ((green.GetComponent<MagnetScript>().done == true && flag3 != true) || (count==3 && flag3 !=true))
         {
+			printSuccess (green);
             if (count == 0)
                 greenwin = true;
             else if (count == 1)
@@ -107,6 +112,7 @@ public class GameController : MonoBehaviour
         }
 		if ((blue.GetComponent<MagnetScript>().done == true && flag4 != true) || (count ==3 && flag4!=true))
         {
+			printSuccess (blue);
             if (count == 0)
                 bluewin = true;
             else if (count == 1)
@@ -126,43 +132,62 @@ public class GameController : MonoBehaviour
         if (count == 4)
         {
             if (redwin == true)
-                textmesh.text = string.Format("WINNER RED");
+                redPlaceText.text = string.Format("WINNER RED");
             else if (redsecond == true)
-                textmesh.text = string.Format("Second RED");
+                redPlaceText.text = string.Format("Second RED");
             else if (redthird == true)
-                textmesh.text = string.Format("Third RED");
+                redPlaceText.text = string.Format("Third RED");
             else if (redfourth == true)
-                textmesh.text = string.Format("Fourth RED");
+                redPlaceText.text = string.Format("Fourth RED");
 
             if (purplewin == true)
-                textmesh2.text = string.Format("WINNER PURPLE");
+                purplePlaceText.text = string.Format("WINNER PURPLE");
             else if (purplesecond == true)
-                textmesh2.text = string.Format("Second PURPLE");
+                purplePlaceText.text = string.Format("Second PURPLE");
             else if (purplethird == true)
-                textmesh2.text = string.Format("Third PURPLE");
+                purplePlaceText.text = string.Format("Third PURPLE");
             else if (purplefourth == true)
-                textmesh2.text = string.Format("Fourth PURPLE");
+                purplePlaceText.text = string.Format("Fourth PURPLE");
 
             if (greenwin == true)
-                textmesh3.text = string.Format("WINNER GREEN");
+                greenPlaceText.text = string.Format("WINNER GREEN");
             else if (greensecond == true)
-                textmesh3.text = string.Format("Second GREEN");
+                greenPlaceText.text = string.Format("Second GREEN");
             else if (greenthird == true)
-                textmesh3.text = string.Format("Third GREEN");
+                greenPlaceText.text = string.Format("Third GREEN");
             else if (greenfourth == true)
-                textmesh3.text = string.Format("Fourth GREEN");
+                greenPlaceText.text = string.Format("Fourth GREEN");
 
             if (bluewin == true)
-                textmesh4.text = string.Format("WINNER BLUE");
+                bluePlaceText.text = string.Format("WINNER BLUE");
             else if (bluesecond == true)
-                textmesh4.text = string.Format("Second BLUE");
+                bluePlaceText.text = string.Format("Second BLUE");
             else if (bluethird == true)
-                textmesh4.text = string.Format("Third BLUE");
+                bluePlaceText.text = string.Format("Third BLUE");
             else if (bluefourth == true)
-                textmesh4.text = string.Format("Fourth BLUE");
+                bluePlaceText.text = string.Format("Fourth BLUE");
 
             Time.timeScale = 0;
         }
     }
+
+	void printSuccess(GameObject color) {
+		wayToGoText.text = string.Format("Way to go " + gameObject.name);
+
+		switch (gameObject.name) {
+		case "BLUE":
+			wayToGoText.color = Color.blue;
+			break;
+		case "RED":
+			wayToGoText.color = Color.red;
+			break;
+		case "GREEN":
+			wayToGoText.color = Color.green;
+			break;
+		default:
+			wayToGoText.color = Color.magenta;
+			break;
+		}
+	}
 }
 

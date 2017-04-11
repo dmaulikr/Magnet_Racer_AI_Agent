@@ -5,10 +5,9 @@ public class LapCounter : MonoBehaviour
 {
 
     public TrackLapTrigger currentLapTrigger;
-    public TextMesh textMesh;
-    public TextMesh textMesh2;
+	public TextMesh lapCountText;
 
-    public bool win = false;
+    bool win = false;
 
 	TrackLapTrigger nextLapTrigger;
 	TrackLapTrigger winning;
@@ -19,7 +18,7 @@ public class LapCounter : MonoBehaviour
     void Start()
     {
         _lap = 0;
-        SetNextTrigger(first);
+		SetNextTrigger(currentLapTrigger);
         UpdateText();
     }
 
@@ -27,30 +26,17 @@ public class LapCounter : MonoBehaviour
     // Update lap counter text
     void UpdateText()
     {
-        if (textMesh)
+		if (lapCountText)
         {
-           textMesh.text = string.Format("{0}", _lap);
+			lapCountText.text = string.Format("{0}", _lap);
         }
     }
 
 	// Check for a winner
     public void winner()
     {
-        if (textMesh2 && _lap == 5)
+        if (_lap == 5)
         {
-            
-            textMesh2.text = string.Format("Way to go " + gameObject.name);
-
-			switch (gameObject.name) {
-				case "BLUE":
-					textMesh2.color = Color.blue;
-				case "RED":
-					textMesh2.color = Color.red;
-				case "GREEN":
-					textMesh2.color = Color.green;
-				default:
-					textMesh2.color = Color.magenta;
-			}
 			win = true;
             GetComponent<Rigidbody2D>().isKinematic = true;
         }
