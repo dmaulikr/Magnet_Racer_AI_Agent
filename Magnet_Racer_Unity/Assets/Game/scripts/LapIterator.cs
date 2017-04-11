@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LapCounter : MonoBehaviour
+public class LapIterator : MonoBehaviour
 {
 
-    public TrackLapTrigger currentLapTrigger;
+    public GateTrigger currentLapTrigger;
 	public TextMesh lapCountText;
 
     bool win = false;
 
-	TrackLapTrigger nextLapTrigger;
-	TrackLapTrigger winning;
+	GateTrigger nextLapTrigger;
+	GateTrigger winning;
 
     int _lap;
    
@@ -43,7 +43,7 @@ public class LapCounter : MonoBehaviour
     }
 
     // when lap trigger is entered
-	public void OnLapTrigger(TrackLapTrigger trigger)
+	public void OnLapTrigger(GateTrigger trigger)
     {
         if (trigger == nextLapTrigger)
         {
@@ -58,7 +58,7 @@ public class LapCounter : MonoBehaviour
     }
 
     //adding the next lap trigger counter into
-	void SetNextTrigger(TrackLapTrigger trigger)
+	void SetNextTrigger(GateTrigger trigger)
     {
         nextLapTrigger = trigger.next;
      
