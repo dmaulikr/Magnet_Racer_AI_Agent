@@ -38,6 +38,7 @@ public class LapIterator : MonoBehaviour
     {
         if (_lap == 1)
         {
+            win = true;
             GetComponent<Rigidbody2D>().transform.position = endPoint.transform.position;
             GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
         }
