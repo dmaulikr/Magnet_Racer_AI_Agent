@@ -172,9 +172,9 @@ public class GameController : MonoBehaviour
     }
 
 	void printSuccess(GameObject color) {
-		wayToGoText.text = string.Format("Way to go " + gameObject.name);
+		wayToGoText.text = string.Format("Way to go " + color.name);
 
-		switch (gameObject.name) {
+		switch (color.name) {
 		case "BLUE":
 			wayToGoText.color = Color.blue;
 			break;

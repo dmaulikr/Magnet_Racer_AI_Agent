@@ -69,7 +69,7 @@ public class MagnetScript : MonoBehaviour
 
         float force1 = repelling / traveldistance1;
 
-		Vector3 newforce1 = direction1 * force1 * charge * 1 * Time.smoothDeltaTime;
+		Vector3 newforce1 = direction1 * force1 * charge * -1 * Time.smoothDeltaTime;
 
         if (traveldistance1 <= 14)
             myrigidbody.AddForce(newforce1);
@@ -82,7 +82,7 @@ public class MagnetScript : MonoBehaviour
 
         float force2 = repelling / traveldistance2;
 
-		Vector3 newforce2 = direction2 * force2 * charge * -1 * Time.smoothDeltaTime;
+		Vector3 newforce2 = direction2 * force2 * charge * 1 * Time.smoothDeltaTime;
 
         if (traveldistance2 <= 14)
             myrigidbody.AddForce(newforce2);
@@ -95,7 +95,7 @@ public class MagnetScript : MonoBehaviour
 
         float force3 = repelling / traveldistance3;
 
-		Vector3 newforce3 = direction3 * force3 * charge * 1 * Time.smoothDeltaTime;
+		Vector3 newforce3 = direction3 * force3 * charge * -1 * Time.smoothDeltaTime;
 
         if (traveldistance3 <= 14)
             myrigidbody.AddForce(newforce3);
@@ -109,7 +109,7 @@ public class MagnetScript : MonoBehaviour
 
         float force4 = repelling / traveldistance4;
 
-		Vector3 newforce4 = direction4 * force4 * charge * -1 * Time.smoothDeltaTime;
+		Vector3 newforce4 = direction4 * force4 * charge * 1 * Time.smoothDeltaTime;
 
         if (traveldistance4 <= 14)
             myrigidbody.AddForce(newforce4);
