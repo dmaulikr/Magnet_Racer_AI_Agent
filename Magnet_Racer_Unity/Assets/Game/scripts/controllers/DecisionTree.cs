@@ -6,9 +6,9 @@ public class DecisionTree : MonoBehaviour {
 
 	private Magnet magnetScript;
 
-	private float y1_slope = 0.446f;
+	private float y1_slope = 0.304f;
 	private float y_const = 1.25f;
-	private float y2_slope = -0.486f;
+	private float y2_slope = -0.55f;
 
 	void Start() {
 		magnetScript = GetComponent<Magnet> ();
