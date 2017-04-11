@@ -7,8 +7,6 @@ public class LapCounter : MonoBehaviour
     public TrackLapTrigger currentLapTrigger;
 	public TextMesh lapCountText;
 
-    bool win = false;
-
 	TrackLapTrigger nextLapTrigger;
 	TrackLapTrigger winning;
 
@@ -35,9 +33,8 @@ public class LapCounter : MonoBehaviour
 	// Check for a winner
     public void winner()
     {
-        if (_lap == 5)
+        if (_lap == 1)
         {
-			win = true;
             GetComponent<Rigidbody2D>().isKinematic = true;
         }
     }
