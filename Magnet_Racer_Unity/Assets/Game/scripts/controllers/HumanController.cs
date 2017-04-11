@@ -5,6 +5,7 @@ using UnityEngine;
 public class HumanController : MonoBehaviour {
 
 	private Magnet magnetScript;
+	public KeyCode option;
 
     void Start()
     {
@@ -14,7 +15,7 @@ public class HumanController : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 		
-        if(Input.GetKeyDown(KeyCode.RightArrow))
+		if(option != null && Input.GetKeyDown(option))
         {
             magnetScript.makeMove();
         }
