@@ -17,7 +17,7 @@ public class RandomAgent : MonoBehaviour {
 	}
 
 	//Returns true if you want to toggle
-	void Update () {
+	void FixedUpdate () {
 		// Get a random number
 		float randomNumber = Random.value;
 

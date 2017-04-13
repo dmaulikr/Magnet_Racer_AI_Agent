@@ -7,6 +7,7 @@ public class LapIterator : MonoBehaviour
     public GateTrigger currentLapTrigger;
 	public TextMesh lapCountText;
     public GameObject endPoint;
+	public int winLapCount;
 
     bool win = false;
 
@@ -36,7 +37,7 @@ public class LapIterator : MonoBehaviour
 	// Check for a winner
     public void winner()
     {
-        if (_lap == 1)
+        if (_lap == winLapCount)
         {
             win = true;
             GetComponent<Rigidbody2D>().transform.position = endPoint.transform.position;
