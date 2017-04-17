@@ -109,7 +109,6 @@ public class GameController : MonoBehaviour
     }
 
 	void printSuccess(GameObject color) {
-        if(count != 4)
         wayToGoText.text = string.Format("Way to go " + color.name);
 
 		switch (color.name) {
