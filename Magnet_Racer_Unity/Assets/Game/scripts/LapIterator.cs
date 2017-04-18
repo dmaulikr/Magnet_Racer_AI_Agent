@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.IO;
 
 public class LapIterator : MonoBehaviour
 {
+
+	// Save data file location
+	public string saveLapDataFile;
 
     public GateTrigger currentLapTrigger;
 	public TextMesh lapCountText;
@@ -40,8 +44,10 @@ public class LapIterator : MonoBehaviour
         if (_lap == winLapCount)
         {
             win = true;
-            GetComponent<Rigidbody2D>().transform.position = endPoint.transform.position;
-            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
+			Rigidbody2D rigid = GetComponent<Rigidbody2D> ();
+			rigid.transform.position = endPoint.transform.position;
+			rigid.transform.rotation = Quaternion.identity;
+			rigid.constraints = RigidbodyConstraints2D.FreezeAll;
         }
     }
 
@@ -67,4 +73,16 @@ public class LapIterator : MonoBehaviour
      
         Debug.Log("next=" + nextLapTrigger.gameObject.name);
     }
+
+
+	/*
+	 * Allow to analyze effectiveness by saving a magnets lap times to a text file.
+	 */
+	private void saveLapTimeData() {
+		int lapCount = 0;
+		int lapTime = 0;
+		StreamWriter file = new StreamWriter (saveLapDataFile, true);
+		file.WriteLine ("Lap : " + lapCount + " Time: " + lapTime);
+		file.Close ();
+	}
 }

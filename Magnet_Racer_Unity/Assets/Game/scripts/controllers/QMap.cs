@@ -5,16 +5,18 @@ using System.IO;
 
 public class QMap : MonoBehaviour {
 
+	// Public Data
+	public string qMapTextLocation;
+
+	// Private Data
+	private int learningLaps;
 	private Dictionary<QState, int[]> qMap;
 
 	// Use this for initialization
 	void Start () {
+		learningLaps = 0;
 		qMap = new Dictionary<QState, int[]> ();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+		//readDataFromFile ();
 	}
 
 	// read the stored q map.
@@ -32,7 +34,6 @@ public class QMap : MonoBehaviour {
 		}
 
 		file.Close();
-
 	}
 
 	// Update the stored q map.
@@ -49,5 +50,6 @@ public class QMap : MonoBehaviour {
 				file.WriteLine(line);
 			}
 		}
+		file.Close ();
 	}
 }
