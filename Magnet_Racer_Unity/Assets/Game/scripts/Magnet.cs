@@ -55,6 +55,10 @@ public class Magnet : MonoBehaviour
 		return opponents;
 	}
 
+	public Vector2 getPosition() {
+		return myrigidbody.position;
+	}
+
     private void updateSprite()
     {
         //updating sprite of this charge

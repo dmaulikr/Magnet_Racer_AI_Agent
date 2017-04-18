@@ -36,6 +36,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+		Time.timeScale = 1.5f;
         count = 0;
 		rankings = new List<GameObject> ();
     }

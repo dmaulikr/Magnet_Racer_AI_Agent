@@ -1,5 +1,0 @@
-Lap : 1 Time: 181.930549
-Lap : 2 Time: 26.953109
-Lap : 3 Time: 10.906884
-Lap : 4 Time: 10.508899
-Lap : 5 Time: 15.462352

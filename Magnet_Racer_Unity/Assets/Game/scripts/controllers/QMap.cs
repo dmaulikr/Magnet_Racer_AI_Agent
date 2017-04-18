@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
 
 public class QMap {
 	// Private Data
 	private int learningLaps;
+	private string fileName;
 	private Dictionary<QState, int[]> qMap;
 
 	// Number of values in a line
 	private static int VALUES_PER_LINE = 7;
 
 	// Use this for initialization
-	public QMap(string fileName) {
+	public QMap(string file) {
 		learningLaps = 0;
 		qMap = new Dictionary<QState, int[]> ();
+		this.fileName = file;
 		readDataFromFile (fileName);
 	}
 
@@ -25,7 +28,7 @@ public class QMap {
 		if (qMap.ContainsKey(state)) {
 			return qMap [state];
 		} else {
-			return new int[2] {-1, -1};
+			return new int[2] {0, 0};
 		}
 	}
 
@@ -35,7 +38,15 @@ public class QMap {
 		qMap [state] = values;
 	}
 
+	public int getMaturity() {
+		return this.learningLaps;
+	}
 
+	public void increaseMaturity() {
+		this.learningLaps++;
+		Debug.Log ("Increase Maturity: " + learningLaps);
+		writeDataToFile (fileName);
+	}
 
 	/*
 	 * FILE OPERATIONS vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
@@ -50,29 +61,33 @@ public class QMap {
 		int[] intValues = new int[VALUES_PER_LINE];
 		QState state;
 	
-		// Read the file and display it line by line.
-		StreamReader file = new StreamReader(fileName);
+		try {
+			// Read the file and display it line by line.
+			StreamReader file = new StreamReader(fileName);
 
-		// Get first line to see number of laps trained for in file
-		line = file.ReadLine();
-		learningLaps = int.Parse (line);
+			// Get first line to see number of laps trained for in file
+			line = file.ReadLine();
+			learningLaps = int.Parse (line);
 
-		while((line = file.ReadLine()) != null)
-		{
-			Debug.Log("Read line: " + line);
-			values = line.Split (';');
-			for (int i = 0; i < values.Length; i++) {
-				intValues[i] = int.Parse (values[i]);
+			while((line = file.ReadLine()) != null)
+			{
+				Debug.Log("Read line: " + line);
+				values = line.Split (';');
+				for (int i = 0; i < values.Length; i++) {
+					intValues[i] = int.Parse (values[i]);
+				}
+				state = new QState (intValues [0], intValues [1], intValues [2], intValues [3], intValues [4]);
+				int[] qValues = new int[2];
+				qValues [0] = intValues [5];
+				qValues [1] = intValues [6];
+
+				qMap.Add (state, qValues);
 			}
-			state = new QState (intValues [0], intValues [1], intValues [2], intValues [3], intValues [4]);
-			int[] qValues = new int[2];
-			qValues [0] = intValues [5];
-			qValues [1] = intValues [6];
 
-			qMap.Add (state, qValues);
+			file.Close();
+		} catch(Exception e) {
+			Debug.Log("Q Data file does not exist yet. Will create when saving.");
 		}
-
-		file.Close();
 	}
 
 	// Update the stored q map.

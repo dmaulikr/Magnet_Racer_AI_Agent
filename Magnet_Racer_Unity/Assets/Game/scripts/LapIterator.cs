@@ -5,7 +5,6 @@ using System;
 
 public class LapIterator : MonoBehaviour
 {
-	 
 	// Save data file location
 	public string saveLapDataFileType;
 	private const string SAVE_FOLDER = "/Users/Ben/Desktop/Spring 2017/Game Artificial Intelligence/Project/Magnet_Racer_AI_Agent/Magnet_Racer_Unity/Assets/Game/data/";
@@ -15,8 +14,6 @@ public class LapIterator : MonoBehaviour
 	public TextMesh lapCountText;
     public GameObject endPoint;
 	public int winLapCount;
-
-    bool win = false;
 
 	GateTrigger nextLapTrigger;
 	GateTrigger winning;
@@ -54,7 +51,6 @@ public class LapIterator : MonoBehaviour
     {
         if (_lap == winLapCount)
         {
-            win = true;
 			Rigidbody2D rigid = GetComponent<Rigidbody2D> ();
 			rigid.transform.position = endPoint.transform.position;
 			rigid.transform.rotation = Quaternion.identity;
@@ -84,12 +80,14 @@ public class LapIterator : MonoBehaviour
     {
         nextLapTrigger = trigger.next;
      
-        Debug.Log("next=" + nextLapTrigger.gameObject.name);
+        //Debug.Log("next=" + nextLapTrigger.gameObject.name);
     }
 
 
 	/*
 	 * Allow to analyze effectiveness by saving a magnets lap times to a text file.
+	 * 
+	 * Allow learning agents to increase their age.
 	 */
 	private void saveLapTimeData() {
 		if (saveLapDataFileType != null) {
@@ -101,6 +99,16 @@ public class LapIterator : MonoBehaviour
 			StreamWriter file = new StreamWriter (fileName, true);
 			file.WriteLine ("Lap : " + _lap + " Time: " + lapse.TotalSeconds);
 			file.Close ();
+		}
+
+		try{
+			//TODO: Put any other learning agents aging function calls here in the future
+			QLearningAgent agent = GetComponent<QLearningAgent>();
+			if(agent != null) {
+				agent.increaseMaturity ();
+			}
+		} catch(Exception e) {
+			// Do nothing if no learning agent is present
 		}
 	}
 }
