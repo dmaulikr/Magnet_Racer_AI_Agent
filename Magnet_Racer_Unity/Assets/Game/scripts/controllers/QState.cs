@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class QState {
 
+	// Use to determine Quadrant!
+	private float y1_slope = 0.30f;
+	private float y_const = 1.25f;
+	private float y2_slope = -0.60f;
+
 	// 0 or 1
 	private int thisCharge;
 
@@ -35,8 +40,9 @@ public class QState {
 		nearestOpponentCharge = otherCharge;
 	}
 
-	public static QState getQState() {
+	public static QState getQState(GameObject magnet, GameObject[] opponents) {
 		// TODO: implement. May need to add parameters
+		// Determine and set the 5 variables below based on positions and charges
 		int charge = 0;
 		int quadrant = 0;
 		int distance = 0;
@@ -65,5 +71,13 @@ public class QState {
 	{
 		return thisCharge * 10000 + thisQuadrant * 1000 + nearestOpponentDistance * 100 + 
 			nearestOpponentDirection * 10 + nearestOpponentCharge;
+	}
+
+
+	/*
+	 * Return 0 - 3 based on position in relation to quadrant lines y1 and y2.
+	 */ 
+	private static int getQuadrant(int x, int z) {
+		// TODO: implement.
 	}
 }
