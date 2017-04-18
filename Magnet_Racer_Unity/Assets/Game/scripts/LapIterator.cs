@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.IO;
+using System;
 
 public class LapIterator : MonoBehaviour
 {
-
+	 
 	// Save data file location
 	public string saveLapDataFile;
 
@@ -19,11 +20,14 @@ public class LapIterator : MonoBehaviour
 	GateTrigger winning;
 
     int _lap;
-   
+
+	DateTime lastLapTime;
+
     // Use this for initialization
     void Start()
     {
         _lap = 0;
+		lastLapTime = System.DateTime.Now;
 		SetNextTrigger(currentLapTrigger);
         UpdateText();
     }
@@ -59,6 +63,7 @@ public class LapIterator : MonoBehaviour
 			if (currentLapTrigger == nextLapTrigger)
             {
                 _lap++;
+				saveLapTimeData ();
                 UpdateText();
                 winner();
             }
@@ -79,10 +84,15 @@ public class LapIterator : MonoBehaviour
 	 * Allow to analyze effectiveness by saving a magnets lap times to a text file.
 	 */
 	private void saveLapTimeData() {
-		int lapCount = 0;
-		int lapTime = 0;
-		StreamWriter file = new StreamWriter (saveLapDataFile, true);
-		file.WriteLine ("Lap : " + lapCount + " Time: " + lapTime);
-		file.Close ();
+		if (saveLapDataFile != null) {
+			// TODO: fix
+			DateTime lapTime = System.DateTime.Now;
+			TimeSpan lapse = lapTime - lastLapTime;
+			lastLapTime = lapTime;
+			// Use for time System.DateTime.Now;
+			StreamWriter file = new StreamWriter (saveLapDataFile, true);
+			file.WriteLine ("Lap : " + _lap + " Time: " + lapse.TotalSeconds);
+			file.Close ();
+		}
 	}
 }

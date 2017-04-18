@@ -38,11 +38,23 @@ public class Magnet : MonoBehaviour
 		return this.charge;
 	}
 
+	public void removeCharge() {
+		this.charge = 0;
+	}
+
 	public void makeMove() {
 		this.charge *= -1;
 	}
 
-    public void updateSprite()
+	public GameObject[] getOpponents() {
+		GameObject[] opponents = new GameObject[3];
+		opponents [0] = opponent1;
+		opponents [1] = opponent2;
+		opponents [2] = opponent3;
+		return opponents;
+	}
+
+    private void updateSprite()
     {
         //updating sprite of this charge
 		if (charge == 1)
@@ -51,6 +63,9 @@ public class Magnet : MonoBehaviour
             spriterender.sprite = spritenegative;
     }
    
+	/**
+	 * Physics for the magnet
+	 */
     void FixedUpdate()
     {
 		updateSprite();
