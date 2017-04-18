@@ -79,5 +79,6 @@ public class QState {
 	 */ 
 	private static int getQuadrant(int x, int z) {
 		// TODO: implement.
+		return 0;
 	}
 }
