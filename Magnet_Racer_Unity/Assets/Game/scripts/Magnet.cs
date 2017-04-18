@@ -38,7 +38,8 @@ public class Magnet : MonoBehaviour
 		return this.charge;
 	}
 
-	public void removeCharge() {
+	public void setDone() {
+		this.done = true;
 		this.charge = 0;
 	}
 
@@ -69,12 +70,6 @@ public class Magnet : MonoBehaviour
     void FixedUpdate()
     {
 		updateSprite();
-        
-        if(GetComponent<Rigidbody2D>().constraints == RigidbodyConstraints2D.FreezePosition)
-        {
-            
-            done = true;
-        }
 
 		/*
 		 * Permanent magnet 1
