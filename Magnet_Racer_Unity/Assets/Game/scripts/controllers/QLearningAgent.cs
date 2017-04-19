@@ -5,10 +5,14 @@ using System;
 
 public class QLearningAgent : MonoBehaviour {
 	// Variables for learning 
-	private const float LEARNING_RATE = 0.1f;
-	private const float LEARNING_RATE_SLOW = 0.01f;
-	private const float DISCOUNT_FACTOR = 0.6f;
-	private const int LEARNING_MATURITY_CAP = 5;
+	private const float LEARNING_RATE = 0.05f;
+	private const float LEARNING_RATE_SLOW = 0.03f;
+	private const float DISCOUNT_FACTOR = 0.2f;
+	private const int LEARNING_MATURITY_CAP = 2;
+
+	// Reward types
+	public enum RewardType {GATE, MOTION, FORCE};
+	public RewardType rewardType;
 
 	// Location of q map text file
 	public string fileNameBase;
@@ -93,7 +97,7 @@ public class QLearningAgent : MonoBehaviour {
 	//  - Calculate a new q value
 	// Update the q values for last state with the new value replacing its old value
 	private void updateQValue() {
-		int reward = calculateReward_Motion ();
+		int reward = calculateReward_Forces ();
 		int maxFuture = bestCurrentQValue ();
 		int[] oldValues = qMap.getValues (lastState);
 		int[] newValues = new int[2];
@@ -106,10 +110,10 @@ public class QLearningAgent : MonoBehaviour {
 			newValues [0] = oldValues [0];
 		}
 
-		Debug.Log("Old Values: " + oldValues[0] + "," + oldValues[1] + 
-			"\nReward: " + reward +
-			"\nMax Future: " + maxFuture +
-			"\nNew Values Q: " + newValues[0] + "," + newValues[1]);
+		//Debug.Log("Old Values: " + oldValues[0] + "," + oldValues[1] + 
+		//	"\nReward: " + reward +
+		//	"\nMax Future: " + maxFuture +
+		//	"\nNew Values Q: " + newValues[0] + "," + newValues[1]);
 
 		qMap.updateQValues(lastState, newValues);
 	}
@@ -117,6 +121,12 @@ public class QLearningAgent : MonoBehaviour {
 	// Based on the action taken from the last state and the current state that resulted
 	// a reward will be given
 	// Use position changes (reward passing through quadrant gates)
+	//
+	/// <summary>
+	/// Conclusion:
+	/// Not effective because a magnet could go through gates easily with the wrong charge do to momentum
+	/// </summary>
+	/// <returns>The reward gates.</returns>
 	private int calculateReward_Gates() {
 		if (lastState.getQuadrant () < currentState.getQuadrant () ||
 			(lastState.getQuadrant() == 3 && currentState.getQuadrant() == 0)) {
@@ -130,6 +140,12 @@ public class QLearningAgent : MonoBehaviour {
 	// Based on the action taken from the last state and the current state that resulted
 	// a reward will be given
 	// Use position changes (reward counter clockwise)
+	/// <summary>
+	/// Conclusion: 
+	/// Not effective for the same reason the gates do not work. The magnet could easily go the right 
+	/// direction with the wrong charge just because of their momentum
+	/// </summary>
+	/// <returns>The reward motion.</returns>
 	private int calculateReward_Motion() {
 		Vector2 position = magnet.GetComponent<Magnet>().getPosition();
 
@@ -156,6 +172,38 @@ public class QLearningAgent : MonoBehaviour {
 				break;
 			case 3: 
 				if (lastPosition.y < position.y)
+					return 50;
+				break;
+			default:
+				break;
+			}
+		}
+
+		return 0;
+	}
+
+	// Calculate a reward based on the new force on the magnet
+	// This way the momentum shouldn't matter
+	private int calculateReward_Forces() {
+		if (lastState.getQuadrant() == currentState.getQuadrant()) 
+		{
+			Vector4 force = magnetScript.calculateForce ();
+
+			switch (currentState.getQuadrant ()) {
+			case 0:
+				if (force.x < 0)
+					return 50;
+				break;
+			case 1:
+				if (force.y < 0)
+					return 50;
+				break;
+			case 2:
+				if (force.x > 0)
+					return 50;
+				break;
+			case 3: 
+				if (force.y > 0)
 					return 50;
 				break;
 			default:
@@ -209,7 +257,9 @@ public class QLearningAgent : MonoBehaviour {
 			return randomNumber < 0.02f;
 		} else {
 			// Probability to explore is lower, eventually 0
-			float probability = 0.02f - 0.005f * (qMap.getMaturity() / LEARNING_MATURITY_CAP); 
+			float probability = 0.02f - 0.002f * (qMap.getMaturity() / LEARNING_MATURITY_CAP); 
+			if (probability < 0.005f)
+				probability = 0.005f;
 			if (randomNumber < probability) {
 				float randomAction = UnityEngine.Random.value;
 				return randomAction < 0.5f; // Don't toggle to often or it will be stagnant
