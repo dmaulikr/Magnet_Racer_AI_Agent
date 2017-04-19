@@ -15,7 +15,7 @@ public class GateTrigger : MonoBehaviour
         
         if (carLapCounter)
         {
-            Debug.Log("lap trigger " + gameObject.name);
+            // Debug.Log("lap trigger " + gameObject.name);
             carLapCounter.OnLapTrigger(this);
         }
     }
