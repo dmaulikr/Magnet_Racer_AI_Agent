@@ -28,7 +28,7 @@ Running:
  -Assets/Game/scripts/controllers/QLearningAgent.cs
 
 
-5. Update the Q Map File Location to a Q Map file if you want to use a pre-trained Q-learning agent
+5. Update the Q Map File Location to a Q Map file if you want to use a pre-trained Q-learning agent (this is done within the inspector panel of the Unity Editor)
 
   -Ex. full path to Game/data/Final Data/qMapForceMap.txt
 
