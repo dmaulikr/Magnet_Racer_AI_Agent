@@ -2,3 +2,5 @@ Lap : 1 Time: 17.432829
 Lap : 2 Time: 5.387005
 Lap : 3 Time: 5.071429
 Lap : 4 Time: 5.437489
+Lap : 5 Time: 55.738568
+Lap : 6 Time: 64.792934

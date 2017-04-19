@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class QState{
-
     // Use to determine Quadrant!
-    private static float y1_slope = 0.30f;
-	private static float y_const = 1.25f;
-	private static float y2_slope = -0.60f;
+    private static float y1_slope = 0.35f;
+	private static float y_const = 0.1f;
+	private static float y2_slope = -0.65f;
 
 	// -1 or 1
 	private int thisCharge;
