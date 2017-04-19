@@ -14,4 +14,14 @@ Running:
 --------
 1. Download Unity
 2. Download Repository Code
-4. Run Scene prototypeB
+
+3. Update SAVE_FOLDER in 
+ Assets/Game/scripts/LapIterator
+ Assets/Game/scripts/controllers/QLearningAgent
+
+ to the full path to Assets/Game/data on your machine
+
+5. Update the Q Map File Location to a Q Map file if you want to use a pre-trained Q-learning agent
+  Ex. full path to Game/data/Final Data/qMapForceMap.txt
+
+5. Run Scene prototypeB
