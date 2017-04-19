@@ -1,0 +1,17 @@
+Lap : 1 Time: 24.574802
+Lap : 2 Time: 10.209034
+Lap : 3 Time: 44.875753
+Lap : 4 Time: 32.041218
+Lap : 5 Time: 5.752459
+Lap : 6 Time: 18.488654
+Lap : 7 Time: 8.180552
+Lap : 8 Time: 15.729751
+Lap : 9 Time: 5.887131
+Lap : 10 Time: 18.255248
+Lap : 11 Time: 23.012195
+Lap : 12 Time: 27.600054
+Lap : 13 Time: 12.320875
+Lap : 14 Time: 7.782454
+Lap : 15 Time: 6.136001
+Lap : 16 Time: 9.492375
+Lap : 17 Time: 23.595483
