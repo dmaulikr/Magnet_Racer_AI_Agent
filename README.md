@@ -3,11 +3,17 @@ A repository for Game AI group members to work on incorporating a learning algor
 
 Project Report Located At:
 --------------------------
-Magnet_Race_Unity/AIFinalProjectReport_v1.pdf
+Magnet_Racer_Unity/AIFinalProjectReport_v1.pdf
 
 Project Video Demo:
 -------------------
 https://www.youtube.com/watch?v=WuJeBCrysxM&feature=youtu.be
+
+Presentation:
+-------------
+A pdf of the slides we presented Thursday Arpil 13th. Updated slightly to show completed milestones.
+(We did manage to complete our original goals of an effective Q-learning agent as well as decision tree and random agents)
+Magnet_Racer_Unity/Game AI Presentation.pdf
 
 
 Running:
