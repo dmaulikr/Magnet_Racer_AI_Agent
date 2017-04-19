@@ -16,7 +16,6 @@ public class DecisionTree : MonoBehaviour {
 		magnetScript = GetComponent<Magnet> ();
 	}
 
-
     //Returns true if you want to toggle
     void FixedUpdate () {
 
@@ -45,17 +44,17 @@ public class DecisionTree : MonoBehaviour {
         //If above y1
         if (magnetScript.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude <= 0.1f)
         {
-            Debug.Log("flip next to magnet?: " + opponents[locked].name);
+            //Debug.Log("flip next to magnet?: " + opponents[locked].name);
             if (closest < 1.0f)
             {
-                Debug.Log("flip next to magnet?: " + opponents[locked].name);
+                //Debug.Log("flip next to magnet?: " + opponents[locked].name);
                 if (opponents[locked].GetComponent<Magnet>().getCharge() == magnetScript.getCharge())
                     return;
                 else
                     if (velocityFixCounter > 100)
                     {
                         magnetScript.makeMove();
-                        Debug.Log("flip next to magnet?: " +opponents[locked].name);
+                        //Debug.Log("flip next to magnet?: " +opponents[locked].name);
                         velocityFixCounter = 0;
                     }
 
@@ -64,7 +63,7 @@ public class DecisionTree : MonoBehaviour {
             {
                 if (velocityFixCounter > 100)
                 {
-                    Debug.Log("velocity too low: " + magnetScript.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude);
+                    //Debug.Log("velocity too low: " + magnetScript.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude);
                     magnetScript.makeMove();
                     velocityFixCounter = 0;
                 }
